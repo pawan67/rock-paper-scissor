@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useUserContext } from "../context/userContext";
 import party from "party-js";
 import { IconContainer } from "../pages";
@@ -22,7 +22,13 @@ const Result = () => {
   const [loading, setLoading] = useState(true);
   const [result, setResult] = useState();
   const [confett, setConfett] = useState(false);
+  const winRef = useRef(null);
+  const loseRef = useRef(null);
   useEffect(() => {
+    if (score >= 5) {
+      window.location.href = "https://www.youtube.com/watch?v=GtL1huin9EE";
+    }
+
     const random = Math.floor(Math.random() * (3 - 1) + 1);
 
     computerChoosedNumber = random;
@@ -36,15 +42,18 @@ const Result = () => {
         console.log("Tied");
         setResult("Tied");
         navigator.vibrate(100);
+        loseRef.current.play();
       } else if (iconId == 1 && random == 2) {
         console.log("loss");
         setResult("loss");
         navigator.vibrate(100);
         setScore(score - 1);
+        // loseRef.current.play();
       } else if (iconId == 2 && random == 3) {
         console.log("loss");
         setScore(score - 1);
         navigator.vibrate(100);
+        // loseRef.current.play();
 
         setResult("loss");
       } else if (iconId == 3 && random == 1) {
@@ -52,12 +61,14 @@ const Result = () => {
         setResult("loss");
         setScore(score - 1);
         navigator.vibrate(100);
+        // loseRef.current.play();
       } else {
         setScore(score + 1);
         navigator.vibrate(100);
         console.log("win");
         setResult("win");
         setConfett(true);
+        winRef.current.play();
       }
     };
 
@@ -65,6 +76,8 @@ const Result = () => {
   }, []);
   return (
     <>
+      <audio ref={loseRef} src="/mixkit-circus-lose-2030.wav"></audio>
+      <audio ref={winRef} src="/mixkit-retro-game-notification-212.wav"></audio>
       <div className=" max-w-4xl mx-auto mt-20 flex justify-between">
         <div className=" flex justify-center flex-col items-center">
           <div className=" text-white my-10 md:text-3xl text-2xl font-bold uppercase ">
