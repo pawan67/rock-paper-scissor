@@ -3,8 +3,12 @@ import { useUserContext } from "../context/userContext";
 import party from "party-js";
 import { IconContainer } from "../pages";
 import { motion } from "framer-motion";
-import Confetti from "./Confetti";
+// import Confetti from "./Confetti";
+import useWindowSize from "react-use/lib/useWindowSize";
+import Confetti from "react-confetti";
 const Result = () => {
+  const { width, height } = useWindowSize();
+
   const {
     iconId,
     computerChoosed,
@@ -118,7 +122,7 @@ const Result = () => {
           </motion.div>
         </motion.div>
       )}
-      {confett && <Confetti />}
+      {confett && <Confetti width={width} height={height} />}
     </>
   );
 };
