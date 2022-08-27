@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useUserContext } from "../context/userContext";
+import party from "party-js";
 import { IconContainer } from "../pages";
 import { motion } from "framer-motion";
+import Confetti from "./Confetti";
 const Result = () => {
   const {
     iconId,
@@ -15,6 +17,7 @@ const Result = () => {
 
   const [loading, setLoading] = useState(true);
   const [result, setResult] = useState();
+  const [confett, setConfett] = useState(false);
   useEffect(() => {
     const random = Math.floor(Math.random() * (3 - 1) + 1);
 
@@ -46,6 +49,7 @@ const Result = () => {
 
         console.log("win");
         setResult("win");
+        setConfett(true);
       }
     };
 
@@ -97,6 +101,7 @@ const Result = () => {
       {result && (
         <motion.div className=" md:hidden mt-10  mx-auto ">
           <motion.div
+            id="result"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             className=" text-6xl uppercase font-bold rounded-md p-3 text-white text-center mt-10"
@@ -113,6 +118,7 @@ const Result = () => {
           </motion.div>
         </motion.div>
       )}
+      {confett && <Confetti />}
     </>
   );
 };
