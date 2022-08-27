@@ -24,6 +24,7 @@ const Result = () => {
   const [confett, setConfett] = useState(false);
   const winRef = useRef(null);
   const loseRef = useRef(null);
+  const looseRef = useRef(null);
   useEffect(() => {
     if (score >= 5) {
       window.location.href = "https://www.youtube.com/watch?v=GtL1huin9EE";
@@ -48,12 +49,12 @@ const Result = () => {
         setResult("loss");
         navigator.vibrate(100);
         setScore(score - 1);
-        // loseRef.current.play();
+        looseRef.current.play();
       } else if (iconId == 2 && random == 3) {
         console.log("loss");
         setScore(score - 1);
         navigator.vibrate(100);
-        // loseRef.current.play();
+        looseRef.current.play();
 
         setResult("loss");
       } else if (iconId == 3 && random == 1) {
@@ -61,7 +62,7 @@ const Result = () => {
         setResult("loss");
         setScore(score - 1);
         navigator.vibrate(100);
-        // loseRef.current.play();
+        looseRef.current.play();
       } else {
         setScore(score + 1);
         navigator.vibrate(100);
@@ -78,6 +79,7 @@ const Result = () => {
     <>
       <audio ref={loseRef} src="/mixkit-circus-lose-2030.wav"></audio>
       <audio ref={winRef} src="/mixkit-retro-game-notification-212.wav"></audio>
+      <audio ref={looseRef} src="/mixkit-retro-arcade-lose-2027.wav"></audio>
       <div className=" max-w-4xl mx-auto mt-20 flex justify-between">
         <div className=" flex justify-center flex-col items-center">
           <div className=" text-white my-10 md:text-3xl text-2xl font-bold uppercase ">
