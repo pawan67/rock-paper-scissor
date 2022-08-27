@@ -70,6 +70,7 @@ export const IconContainer = ({ iconId, onClick }) => {
   const select = () => {
     setIconId(iconId);
     setView("second");
+    navigator.vibrate(100);
   };
   return (
     <div

@@ -35,22 +35,26 @@ const Result = () => {
       if (iconId == random) {
         console.log("Tied");
         setResult("Tied");
+        navigator.vibrate(100);
       } else if (iconId == 1 && random == 2) {
         console.log("loss");
         setResult("loss");
+        navigator.vibrate(100);
         setScore(score - 1);
       } else if (iconId == 2 && random == 3) {
         console.log("loss");
         setScore(score - 1);
+        navigator.vibrate(100);
 
         setResult("loss");
       } else if (iconId == 3 && random == 1) {
         console.log("loss");
         setResult("loss");
         setScore(score - 1);
+        navigator.vibrate(100);
       } else {
         setScore(score + 1);
-
+        navigator.vibrate(100);
         console.log("win");
         setResult("win");
         setConfett(true);
@@ -115,7 +119,10 @@ const Result = () => {
           <motion.div
             initial={{ scale: 0, translateY: 100 }}
             animate={{ rotate: 0, scale: 1, translateY: 0 }}
-            onClick={() => setView("first")}
+            onClick={() => {
+              navigator.vibrate(100);
+              setView("first");
+            }}
             className=" text-xl bg-white rounded-md p-3 text-blue-900 text-center mt-5 font-medium uppercase cursor-pointer "
           >
             play Again
