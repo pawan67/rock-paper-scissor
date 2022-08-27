@@ -30,7 +30,7 @@ const Result = () => {
       window.location.href = "https://www.youtube.com/watch?v=GtL1huin9EE";
     }
 
-    const random = Math.floor(Math.random() * (3 - 1) + 1);
+    const random = Math.floor(Math.random() * (4 - 1) + 1);
 
     computerChoosedNumber = random;
     const randomChoose = () => {
@@ -59,6 +59,12 @@ const Result = () => {
         setResult("loss");
       } else if (iconId == 3 && random == 1) {
         console.log("loss");
+        setResult("loss");
+        setScore(score - 1);
+        navigator.vibrate(100);
+        looseRef.current.play();
+      } else if (iconId == 2 && random == 3) {
+        onsole.log("loss");
         setResult("loss");
         setScore(score - 1);
         navigator.vibrate(100);
